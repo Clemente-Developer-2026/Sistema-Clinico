@@ -1,0 +1,563 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Inicio - Sistema Clínico
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+
+                <i class="fas fa-heartbeat"></i>
+
+                Excelencia & Cuidado humano
+
+            </div>
+
+            <h1>
+                Salud que late con fuerza y confianza
+            </h1>
+
+            <p>
+                En Clínica Vitalis unimos tecnología de vanguardia,
+                especialistas de primer nivel y un trato cálido para
+                cuidar lo más valioso: tu vida.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{{ url_for('usuario.login') }}" class="btn">
+
+                    <i class="fas fa-calendar-check"></i>
+
+                    Agenda tu cita
+
+                </a>
+
+                <a href="#servicios" class="btn-outline">
+
+                    Descubrir servicios
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-image">
+
+            <img src="https://placehold.co/600x450/fef0ed/bc1c2e?text=Equipo+Médico+Vitalis+Rojo"
+                alt="Equipo médico profesional clínica">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICIOS -->
+<section id="servicios">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Atención integral con calidez
+        </h2>
+
+        <div class="section-subtitle">
+
+            Más de 35 especialidades médicas,
+            diagnósticos precisos y tratamientos
+            personalizados para toda la familia.
+
+        </div>
+
+
+        <div class="services-grid">
+
+            <div class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-stethoscope"></i>
+
+                </div>
+
+                <h3>Consulta general</h3>
+
+                <p>
+                    Chequeos preventivos, medicina interna
+                    y atención primaria con estándares de excelencia.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-heart"></i>
+
+                </div>
+
+                <h3>Cardiología</h3>
+
+                <p>
+                    Cuidado cardiovascular avanzado:
+                    ecocardiogramas, pruebas de esfuerzo y prevención.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-brain"></i>
+
+                </div>
+
+                <h3>Neurología</h3>
+
+                <p>
+                    Diagnóstico y tratamiento de migraña,
+                    epilepsia, Alzheimer y trastornos del movimiento.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-baby-carriage"></i>
+
+                </div>
+
+                <h3>Pediatría</h3>
+
+                <p>
+                    Atención integral desde recién nacidos
+                    hasta adolescentes, con ambiente amigable.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-x-ray"></i>
+
+                </div>
+
+                <h3>Imagenología</h3>
+
+                <p>
+                    Resonancia magnética, tomografía computarizada,
+                    ultrasonido de última generación.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-female"></i>
+
+                </div>
+
+                <h3>Ginecología</h3>
+
+                <p>
+                    Salud reproductiva, obstetricia,
+                    seguimiento de embarazo y menopausia.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="about-stats">
+
+    <div class="container about-grid">
+
+        <div class="about-text">
+
+            <h2 class="section-title">
+                Compromiso rojo: pasión por la salud
+            </h2>
+
+            <p style="margin-bottom: 18px;">
+
+                Somos una clínica que combina ciencia,
+                innovación y calidez humana.
+
+                Nuestro sello es la atención personalizada,
+                con médicos certificados y un modelo centrado
+                en resultados.
+
+            </p>
+
+            <p>
+
+                Más de 25 mil pacientes confían en Vitalis.
+
+                Contamos con certificaciones internacionales
+                y equipos de última tecnología para garantizar
+                la máxima seguridad.
+
+            </p>
+
+
+            <a href="{{ url_for('usuario.login') }}" class="btn" style="margin-top: 28px;">
+
+                <i class="fas fa-phone-alt"></i>
+
+                Solicitar atención
+
+            </a>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-item">
+
+                <div class="stat-number">+27K</div>
+
+                <div class="stat-label">
+                    Pacientes atendidos
+                </div>
+
+            </div>
+
+
+            <div class="stat-item">
+
+                <div class="stat-number">38+</div>
+
+                <div class="stat-label">
+                    Especialidades
+                </div>
+
+            </div>
+
+
+            <div class="stat-item">
+
+                <div class="stat-number">99%</div>
+
+                <div class="stat-label">
+                    Recomendación
+                </div>
+
+            </div>
+
+
+            <div class="stat-item">
+
+                <div class="stat-number">24/7</div>
+
+                <div class="stat-label">
+                    Urgencias
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ESPECIALISTAS -->
+<section id="especialistas" class="doctors">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Médicos líderes en su campo
+        </h2>
+
+        <div class="section-subtitle">
+
+            Un equipo de excelencia humana y profesional,
+            dedicado a devolverte bienestar con calidez.
+
+        </div>
+
+
+        <div class="doctors-grid">
+
+            <div class="doctor-card">
+
+                <div class="doctor-img">
+
+                    <i class="fas fa-user-md fa-3x"></i>
+
+                </div>
+
+                <h4>Dra. Valeria Fuentes</h4>
+
+                <p>Cardióloga intervencionista</p>
+
+            </div>
+
+
+            <div class="doctor-card">
+
+                <div class="doctor-img">
+
+                    <i class="fas fa-user-md fa-3x"></i>
+
+                </div>
+
+                <h4>Dr. Mateo Cárdenas</h4>
+
+                <p>Neurocirujano</p>
+
+            </div>
+
+
+            <div class="doctor-card">
+
+                <div class="doctor-img">
+
+                    <i class="fas fa-user-md fa-3x"></i>
+
+                </div>
+
+                <h4>Dra. Jimena Salas</h4>
+
+                <p>Pediatra Neonatóloga</p>
+
+            </div>
+
+
+            <div class="doctor-card">
+
+                <div class="doctor-img">
+
+                    <i class="fas fa-user-md fa-3x"></i>
+
+                </div>
+
+                <h4>Dr. Rodrigo Peña</h4>
+
+                <p>Traumatólogo deportivo</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TESTIMONIOS -->
+<section id="testimonios" class="testimonials">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Experiencias que inspiran confianza
+        </h2>
+
+        <div class="section-subtitle">
+
+            Pacientes reales que han recuperado
+            su salud en Clínica Vitalis.
+
+        </div>
+
+
+        <div class="testimonial-grid">
+
+            <div class="testimonial-card">
+
+                <i class="fas fa-quote-left fa-2x"></i>
+
+                <div class="testimonial-text">
+
+                    "Excelente atención,
+                    me realizaron un cateterismo de emergencia
+                    y todo salió perfecto."
+
+                </div>
+
+                <div class="testimonial-author">
+                    — Jorge R.
+                </div>
+
+            </div>
+
+
+            <div class="testimonial-card">
+
+                <i class="fas fa-quote-left fa-2x"></i>
+
+                <div class="testimonial-text">
+
+                    "Llevo a mi hijo desde pequeño,
+                    los pediatras son maravillosos."
+
+                </div>
+
+                <div class="testimonial-author">
+                    — Luciana M.
+                </div>
+
+            </div>
+
+
+            <div class="testimonial-card">
+
+                <i class="fas fa-quote-left fa-2x"></i>
+
+                <div class="testimonial-text">
+
+                    "Me operaron de la rodilla
+                    y la recuperación fue increíble."
+
+                </div>
+
+                <div class="testimonial-author">
+                    — Andrés G.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CITA -->
+<section id="cita" class="appointment">
+
+    <div class="container appointment-wrapper">
+
+        <div class="appointment-text">
+
+            <h2>
+                ¿Necesitas atención médica especializada?
+            </h2>
+
+            <p>
+
+                Reserva tu cita en línea de forma fácil y rápida.
+
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('usuario.login') }}" class="btn btn-light">
+
+            <i class="fas fa-calendar-alt"></i>
+
+            Pedir cita ahora
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACTO -->
+<section id="contacto" style="background: white;">
+
+    <div class="container">
+
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between;">
+
+            <div style="flex: 1;">
+
+                <h2 class="section-title">
+                    Estamos para ti
+                </h2>
+
+                <p style="margin-bottom: 20px;">
+
+                    <i class="fas fa-map-marker-alt" style="color:var(--primary); width: 24px;"></i>
+
+                    Av. Paseo de la Salud 789
+
+                </p>
+
+
+                <p>
+
+                    <i class="fas fa-phone-alt" style="color:var(--primary); width: 24px;"></i>
+
+                    +52 (55) 9876 5432
+
+                </p>
+
+
+                <p>
+
+                    <i class="fas fa-envelope" style="color:var(--primary); width: 24px;"></i>
+
+                    contacto@vitalisclinica.com
+
+                </p>
+
+            </div>
+
+
+            <div style="flex: 1; background: #fef5f2; border-radius: 32px; padding: 28px;">
+
+                <h3 style="color: var(--primary-dark);">
+                    Horario de atención
+                </h3>
+
+                <p>
+                    Lunes a Viernes: 7:00 – 21:00 hrs
+                </p>
+
+                <p>
+                    Sábados: 8:00 – 15:00 hrs
+                </p>
+
+                <p>
+                    Urgencias 24 horas
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

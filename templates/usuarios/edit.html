@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} USUARIOS - EDIT {% endblock %}
+
+{% block content %}
+<h1>Actualizar de usuarios</h1>
+
+<form action="{{ url_for('usuario.edit',id=usuario.id) }}" class="form form-control" method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" value="{{usuario.nombre}}">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Usuario</label>
+        <input type="text" class="form-control" name="username" value="{{usuario.username}}">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" name="password" value="{{usuario.password}}">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Rol</label>
+        <select name="rol" id="">
+            <option value="Doctor" {% if usuario.rol == 'Doctor' %}selected{% endif %}>Doctor</option>
+            <option value="Paciente" {% if usuario.rol == 'Paciente' %}selected{% endif %}>Paciente</option>
+            <option value="Administrador" {% if usuario.rol == 'Paciente' %}selected{% endif %}>Administrador</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+
+
+{% endblock %}

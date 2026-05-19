@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>{% block title %} Sistemas - Clinico {% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylos.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <h1>Sistema Clinico<span>MedicSW</span></h1>
+            </div>
+            <div class="mobile-menu" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#inicio" class="active">Inicio</a>
+                <a href="#servicios">{% block reserva %} {% endblock %}</a>
+                <a href="#especialistas">{% block cita %} {% endblock %}</a>
+                {% if session.get('usuario_id') %}
+
+                <a href="{{ url_for('logout') }}" class="btn-outline" style="padding: 8px 20px;">
+
+                    Cerrar Sesión
+
+                </a>
+
+                {% else %}
+
+                <a href="{{ url_for('usuario.login') }}" class="btn-outline" style="padding: 8px 20px;">
+
+                    Iniciar Sesión
+
+                </a>
+
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+
+
+        {% endblock %}
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Clínica Vitalis</h4>
+                    <p>Cuidando vidas con excelencia médica y corazón rojo. Más de 15 años de experiencia.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces legales</h4>
+                    <ul>
+                        <li><a href="#">Aviso de privacidad</a></li>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Política de citas</a></li>
+                        <li><a href="#">Trabaja con nosotros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Atención al paciente</h4>
+                    <ul>
+                        <li><i class="fas fa-headset"></i> +52 55 8899 1122</li>
+                        <li><i class="fas fa-clock"></i> Llamadas 24/7</li>
+                        <li><i class="fas fa-comment-dots"></i> Chat en línea</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">© 2025 MedicSW - Excelencia en salud con identidad roja. Todos los derechos
+                reservados.</div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+        }
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+        const sections = document.querySelectorAll("section[id]");
+        window.addEventListener("scroll", () => {
+            let current = "";
+            const scrollY = window.scrollY;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute("id");
+                }
+            });
+            links.forEach(link => {
+                link.classList.remove("active");
+                const href = link.getAttribute("href").replace("#", "");
+                if (href === current && current !== "") {
+                    link.classList.add("active");
+                } else if (current === "" && link.getAttribute("href") === "#inicio") {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
