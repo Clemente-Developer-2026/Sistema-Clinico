@@ -1,4 +1,4 @@
-from flask import request, redirect, url_for, Blueprint,session
+from flask import request, redirect, url_for, Blueprint
 from models.usuario_model import Usuario
 from views import usuario_view
 
@@ -45,50 +45,3 @@ def delete(id):
 
 
 
-@usuario_bp.route("/login", methods=['GET', 'POST'])
-def login():
-
-    if request.method == 'POST':
-
-        username = request.form['username']
-        password = request.form['password']
-
-        usuario = Usuario.get_by_username(username)
-
-        if usuario and usuario.verify_password(password):
-
-            session['usuario_id'] = usuario.id
-            session['usuario_nombre'] = usuario.nombre
-            session['usuario_rol'] = usuario.rol
-
-
-            # ADMIN
-            if usuario.rol == "admin":
-
-                return redirect(
-                    url_for('admin_panel')
-                )
-
-
-            # MEDICO
-            elif usuario.rol == "medico":
-
-                return redirect(
-                    url_for('medico.index')
-                )
-
-
-            # PACIENTE
-            elif usuario.rol == "paciente":
-
-                return redirect(
-                    url_for('paciente.index')
-                )
-
-
-        else:
-
-            return "Usuario o contraseña incorrectos"
-
-
-    return usuario_view.login()

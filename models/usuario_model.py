@@ -30,10 +30,7 @@ class Usuario(db.Model):
 
     @staticmethod
     def get_all():
-
-        usuarios = Usuario.query.all()
-
-        return usuarios if usuarios else []
+        return Usuario.query.all()
     
     @staticmethod
     def get_by_id(id):

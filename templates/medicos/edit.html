@@ -1,128 +1,28 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Editar Médico
-{% endblock %}
+{% block title %} MEDICO - EDIT {% endblock %}
 
 {% block content %}
+<h1>Actualizar de medico</h1>
 
-<div class="container py-5">
-
-    <div class="row justify-content-center">
-
-        <div class="col-lg-8">
-
-            <div class="card shadow-lg border-0 rounded-4">
-
-                <div class="card-header bg-info text-white p-4 rounded-top-4">
-
-                    <h2 class="mb-0">
-                        <i class="fas fa-user-md"></i>
-                        Editar Médico
-                    </h2>
-
-                </div>
-
-                <div class="card-body p-5">
-
-                    <form method="POST">
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-                                Nombre Completo
-                            </label>
-
-                            <input
-                                type="text"
-                                name="nombre"
-                                class="form-control form-control-lg"
-                                value="{{ medico.nombre }}"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-                                    Especialidad
-                                </label>
-
-                                <input
-                                    type="text"
-                                    name="especialidad"
-                                    class="form-control form-control-lg"
-                                    value="{{ medico.especialidad }}"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-                                    Teléfono
-                                </label>
-
-                                <input
-                                    type="text"
-                                    name="telefono"
-                                    class="form-control form-control-lg"
-                                    value="{{ medico.telefono }}"
-                                    required
-                                >
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-                                Correo Electrónico
-                            </label>
-
-                            <input
-                                type="email"
-                                name="correo"
-                                class="form-control form-control-lg"
-                                value="{{ medico.correo }}"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="d-grid">
-
-                            <button
-                                type="submit"
-                                class="btn btn-info btn-lg rounded-3"
-                            >
-
-                                <i class="fas fa-save"></i>
-                                Actualizar Médico
-
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-
+<form action="{{ url_for('medico.edit',id=medico.id) }}" class="form form-control" method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" value="{{medico.nombre}}">
     </div>
+        <div class="mb-3">
+        <label for="" class="form-label">Eespecialidad</label>
+        <input type="text" class="form-control" name="especialidad" value="{{medico.especialidad}}">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Telefono</label>
+        <input type="number" class="form-control" name="telefono" value="{{medico.telefono}}">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Correo</label>
+        <input type="email" class="form-control" name="correo" value="{{medico.correo}}">
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
 
-</div>
 
 {% endblock %}

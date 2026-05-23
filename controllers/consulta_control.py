@@ -2,94 +2,52 @@ from flask import Blueprint,redirect,request,url_for
 from models.consulta_model import Consulta
 from models.medico_model import Medico
 from models.paciente_model import Paciente
+from datetime import datetime
 
 from views import consulta_view
 
-
-consulta_bp = Blueprint(
-    'consulta',
-    __name__,
-    url_prefix='/consultas'
-)
+consulta_bp = Blueprint('consulta',__name__,url_prefix='/consultas')
 
 @consulta_bp.route("/")
 def index():
-
     consultas = Consulta.get_all()
-
     return consulta_view.list(consultas)
-
 
 @consulta_bp.route("/create", methods=['GET', 'POST'])
 def create():
-
-    medicos = Medico.get_all()
-    pacientes = Paciente.get_all()
-
+    medicos = Medico.query.all()
+    pacientes = Paciente.query.all()
     if request.method == 'POST':
-
-        fecha = request.form['fecha']
+        fecha_str = request.form['fecha']
         diagnostico = request.form['diagnostico']
         tratamiento = request.form['tratamiento']
         id_medico = request.form['id_medico']
         id_paciente = request.form['id_paciente']
-
-        consulta = Consulta(
-            fecha,
-            diagnostico,
-            tratamiento,
-            id_medico,
-            id_paciente
-        )
-
+        fecha = datetime.strptime(fecha_str,'%Y-%m-%d').date()
+        consulta = Consulta(fecha,diagnostico,tratamiento,id_medico,id_paciente)
         consulta.save()
-
-        return redirect(
-            url_for('consulta.index')
-        )
-
-    return consulta_view.create(
-        medicos,
-        pacientes
-    )
+        return redirect(url_for('consulta.index'))
+    return consulta_view.create(medicos,pacientes)
 
 
-@consulta_bp.route("/edit/<int:id_consulta>", methods=['GET', 'POST'])
-def edit(id_consulta):
-
-    consulta = Consulta.get_by_id(id_consulta)
-
-    medicos = Medico.get_all()
-    pacientes = Paciente.get_all()
-
+@consulta_bp.route("/edit/<int:id>", methods=['GET', 'POST'])
+def edit(id):
+    consulta = Consulta.get_by_id(id)
+    medicos = Medico.query.all()
+    pacientes = Paciente.query.all()
     if request.method == 'POST':
+        fecha_str = request.form['fecha']
+        diagnostico = request.form['diagnostico']
+        tratamiento = request.form['tratamiento']
+        id_medico = request.form['id_medico']
+        id_paciente = request.form['id_paciente']
+        fecha = datetime.strptime(fecha_str,'%Y-%m-%d').date()
+        consulta.update(fecha=fecha,diagnostico=diagnostico,tratamiento=tratamiento,id_medico=id_medico,id_paciente=id_paciente)
+        return redirect(url_for('consulta.index'))
+    return consulta_view.edit(consulta,medicos,pacientes)
 
-        consulta.update(
-            fecha=request.form['fecha'],
-            diagnostico=request.form['diagnostico'],
-            tratamiento=request.form['tratamiento'],
-            id_medico=request.form['id_medico'],
-            id_paciente=request.form['id_paciente']
-        )
-
-        return redirect(
-            url_for('consulta.index')
-        )
-
-    return consulta_view.edit(
-        consulta,
-        medicos,
-        pacientes
-    )
-
-
-@consulta_bp.route("/delete/<int:id_consulta>")
-def delete(id_consulta):
-
-    consulta = Consulta.get_by_id(id_consulta)
-
+@consulta_bp.route("/delete/<int:id>")
+def delete(id):
+    consulta = Consulta.get_by_id(id)
     consulta.delete()
-
-    return redirect(
-        url_for('consulta.index')
-    )
+    return redirect(url_for('consulta.index'))

@@ -1,177 +1,42 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Editar Consulta
-{% endblock %}
+{% block title %} CONSULTA - EDIT {% endblock %}
 
 {% block content %}
+<h1>Actualizacion de consulta</h1>
 
-<div class="container py-5">
-
-    <div class="row justify-content-center">
-
-        <div class="col-lg-10">
-
-            <div class="card shadow-lg border-0 rounded-4">
-
-                <div class="card-header bg-dark text-white p-4 rounded-top-4">
-
-                    <h2 class="mb-0">
-                        <i class="fas fa-notes-medical"></i>
-                        Editar Consulta Médica
-                    </h2>
-
-                </div>
-
-                <div class="card-body p-5">
-
-                    <form method="POST">
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-                                    Médico
-                                </label>
-
-                                <select
-                                    name="id_medico"
-                                    class="form-select form-select-lg"
-                                    required
-                                >
-
-                                    {% for medico in medicos %}
-
-                                    <option
-                                        value="{{ medico.id_medico }}"
-
-                                        {% if medico.id_medico == consulta.id_medico %}
-                                        selected
-                                        {% endif %}
-                                    >
-
-                                        {{ medico.nombre }}
-                                        -
-                                        {{ medico.especialidad }}
-
-                                    </option>
-
-                                    {% endfor %}
-
-                                </select>
-
-                            </div>
-
-
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-                                    Paciente
-                                </label>
-
-                                <select
-                                    name="id_paciente"
-                                    class="form-select form-select-lg"
-                                    required
-                                >
-
-                                    {% for paciente in pacientes %}
-
-                                    <option
-                                        value="{{ paciente.id_paciente }}"
-
-                                        {% if paciente.id_paciente == consulta.id_paciente %}
-                                        selected
-                                        {% endif %}
-                                    >
-
-                                        {{ paciente.nombre }}
-
-                                    </option>
-
-                                    {% endfor %}
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-                                Fecha
-                            </label>
-
-                            <input
-                                type="date"
-                                name="fecha"
-                                class="form-control form-control-lg"
-                                value="{{ consulta.fecha }}"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-                                Diagnóstico
-                            </label>
-
-                            <textarea
-                                name="diagnostico"
-                                rows="4"
-                                class="form-control"
-                                required
-                            >{{ consulta.diagnostico }}</textarea>
-
-                        </div>
-
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-                                Tratamiento
-                            </label>
-
-                            <textarea
-                                name="tratamiento"
-                                rows="4"
-                                class="form-control"
-                                required
-                            >{{ consulta.tratamiento }}</textarea>
-
-                        </div>
-
-
-                        <div class="d-grid">
-
-                            <button
-                                type="submit"
-                                class="btn btn-dark btn-lg rounded-3"
-                            >
-
-                                <i class="fas fa-save"></i>
-                                Actualizar Consulta
-
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-
+<form action="{{ url_for('consulta.edit',id=consulta.id) }}" class="form form-control" method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Fecha</label>
+        <input type="date" class="form-control" name="fecha" value="{{consulta.fecha.strftime('%d/%m/%Y')}}">
     </div>
+        <div class="mb-3">
+        <label for="" class="form-label">Diagnostico</label>
+        <input type="text" class="form-control" name="diagnostico" value="{{consulta.diagnostico}}">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Tratamiento</label>
+        <input type="text" class="form-control" name="tratamiento" value="{{consulta.tratamiento}}">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Medico</label>
+        <select name="id_medico" class="form form-control" required>
+            <option value="">Seleccione un Medico</option>
+            {% for medico in medicos %}
+            <option value="{{medico.id}}" {% if medico.id == consulta.id_medico %} selected {% endif %}>{{medico.nombre}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Paciente</label>
+        <select name="id_paciente" class="form form-control" required>
+            <option value="">Seleccione un Paciente</option>
+            {% for paciente in pacientes %}
+            <option value="{{paciente.id}}" {% if paciente.id == consulta.id_paciente %} selected {% endif %}>{{paciente.nombre}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
 
-</div>
 
 {% endblock %}

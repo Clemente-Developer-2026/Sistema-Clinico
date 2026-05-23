@@ -24,37 +24,25 @@
                 <i class="fas fa-bars"></i>
             </div>
             <div class="nav-links" id="navLinks">
-                <a href="#inicio" class="active">Inicio</a>
-                <a href="#servicios">{% block reserva %} {% endblock %}</a>
-                <a href="#especialistas">{% block cita %} {% endblock %}</a>
-                {% if session.get('usuario_id') %}
-
-                <a href="{{ url_for('logout') }}" class="btn-outline" style="padding: 8px 20px;">
-
-                    Cerrar Sesión
-
-                </a>
-
-                {% else %}
-
-                <a href="{{ url_for('usuario.login') }}" class="btn-outline" style="padding: 8px 20px;">
-
-                    Iniciar Sesión
-
-                </a>
-
-                {% endif %}
+                <a href="/">Inicio</a>
+                <a href="/usuarios/" >Usuarios</a>
+                <a href="/medicos/">Medicos</a>
+                <a href="/pacientes/">Pacientes</a>
+                <a href="/consultas/">Consultas</a>
             </div>
         </div>
     </header>
 
-    <main>
+    <div class="container" >
         {% block content %}
 
 
         {% endblock %}
 
-    </main>
+
+    </div>
+    {% block body %}
+    {% endblock %}
 
     <footer>
         <div class="container">
@@ -86,42 +74,6 @@
         </div>
     </footer>
 
-    <script>
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('show');
-            });
-        }
-        const links = document.querySelectorAll('.nav-links a');
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('show');
-            });
-        });
-        const sections = document.querySelectorAll("section[id]");
-        window.addEventListener("scroll", () => {
-            let current = "";
-            const scrollY = window.scrollY;
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.offsetHeight;
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute("id");
-                }
-            });
-            links.forEach(link => {
-                link.classList.remove("active");
-                const href = link.getAttribute("href").replace("#", "");
-                if (href === current && current !== "") {
-                    link.classList.add("active");
-                } else if (current === "" && link.getAttribute("href") === "#inicio") {
-                    link.classList.add("active");
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

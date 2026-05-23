@@ -1,128 +1,28 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Editar Paciente
-{% endblock %}
+{% block title %} PACIENTE - EDIT {% endblock %}
 
 {% block content %}
+<h1>Actualizar de paciente</h1>
 
-<div class="container py-5">
-
-    <div class="row justify-content-center">
-
-        <div class="col-lg-8">
-
-            <div class="card shadow-lg border-0 rounded-4">
-
-                <div class="card-header bg-warning text-dark p-4 rounded-top-4">
-
-                    <h2 class="mb-0">
-                        <i class="fas fa-user-edit"></i>
-                        Editar Paciente
-                    </h2>
-
-                </div>
-
-                <div class="card-body p-5">
-
-                    <form method="POST">
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-                                    Nombre Completo
-                                </label>
-
-                                <input
-                                    type="text"
-                                    name="nombre"
-                                    class="form-control form-control-lg"
-                                    value="{{ paciente.nombre }}"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-                                    Edad
-                                </label>
-
-                                <input
-                                    type="number"
-                                    name="edad"
-                                    class="form-control form-control-lg"
-                                    value="{{ paciente.edad }}"
-                                    required
-                                >
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-                                Dirección
-                            </label>
-
-                            <input
-                                type="text"
-                                name="direccion"
-                                class="form-control form-control-lg"
-                                value="{{ paciente.direccion }}"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-                                Teléfono
-                            </label>
-
-                            <input
-                                type="text"
-                                name="telefono"
-                                class="form-control form-control-lg"
-                                value="{{ paciente.telefono }}"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="d-grid">
-
-                            <button
-                                type="submit"
-                                class="btn btn-warning btn-lg rounded-3"
-                            >
-
-                                <i class="fas fa-save"></i>
-                                Actualizar Paciente
-
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-
+<form action="{{ url_for('paciente.edit',id=paciente.id) }}" class="form form-control" method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" value="{{paciente.nombre}}">
     </div>
+        <div class="mb-3">
+        <label for="" class="form-label">Edad</label>
+        <input type="number" class="form-control" name="edad" value="{{paciente.edad}}">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Direccion</label>
+        <input type="text" class="form-control" name="direccion" value="{{paciente.direccion}}">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Telefono</label>
+        <input type="number" class="form-control" name="telefono" value="{{paciente.telefono}}">
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
 
-</div>
 
 {% endblock %}
